@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Me perdonas?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: linear-gradient(135deg,#ffd4e5 0%,#ffe8cc 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #444;
+      margin-bottom: 25px;
+    }
+    #image {
+      width: 250px;
+      max-width: 80%;
+      margin-bottom: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+    }
+    .btn {
+      padding: 14px 30px;
+      font-size: 1.3em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .yes { background: #74d680; }
+    .yes:hover { background: #5ec36b; }
+    .no  { background: #f28585; position: relative; }
+    #finalImage {
+      width: 320px;
+      max-width: 90%;
+      border-radius: 20px;
+      margin-top: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>¿Me perdonas? 🥺</h1>
+    <!-- Imagen principal -->
+    <img id="image" src="imagen.png" alt="Imagen inicial">
+    <div class="buttons">
+      <button class="btn yes" id="yesBtn">Sí</button>
+      <button class="btn no"  id="noBtn">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const container = document.getElementById('container');
+
+    // Al presionar "No", mueve el botón a una posición aleatoria
+    noBtn.addEventListener('click', () => {
+      const btnWidth  = noBtn.offsetWidth;
+      const btnHeight = noBtn.offsetHeight;
+      const margin    = 20;
+
+      const maxX = window.innerWidth  - btnWidth  - margin;
+      const maxY = window.innerHeight - btnHeight - margin;
+
+      const x = Math.random() * (maxX - margin) + margin;
+      const y = Math.random() * (maxY - margin) + margin;
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top  = y + 'px';
+    });
+
+    // Al presionar "Sí", muestra nueva imagen en lugar de video
+    yesBtn.addEventListener('click', () => {
+      container.innerHTML = `
+        <h1>¡Sii, yo sabía que me perdonarías! 🥰</h1>
+        <img id="finalImage" src="imagen2.png" alt="Imagen de perdón">
+      `;
+    });
+  </script>
+</body>
+</html>
